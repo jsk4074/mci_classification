@@ -13,8 +13,9 @@ HTML/PDF reports in local ignored directories.
 | ID | Implementation | Evaluation |
 | --- | --- | --- |
 | [s00](s00/README.md) | Single-channel ResNet18 on log-mel speech features | Frozen patient-disjoint train/validation/test splits |
+| [s01](s01/README.md) | Frozen pinned XLS-R embeddings with mean/attention patient-bag MIL; A/B/C channel-augmentation comparison | Shared five-fold CV on original train + validation patients, then frozen selection and one original-test evaluation |
 
-`s01` and `s02` will be added when their implementations exist.
+`s02` and subsequent experiments will be added when their implementations exist.
 
 ```text
 run_experiment.py          # Common launcher for numbered experiments
@@ -81,6 +82,17 @@ The launcher always supplies explicit paths to the preserved training source.
 The supplied frozen manifest determines membership. Source-data issues such as
 unresolved duplicate participant identities must be resolved or excluded in that
 private manifest before training. No participant review files are published.
+
+For s01's separate environment and complete protocol, see [s01/README.md](s01/README.md).
+Its common-launcher default performs development CV; final training uses the
+direct entrypoint with the saved selection in the same local study directory:
+
+```bash
+python -m pip install -r s01/requirements.txt
+python run_experiment.py s01 --manifest /path/to/private/split_manifest.csv --prepare-only
+python run_experiment.py s01 --manifest /path/to/private/split_manifest.csv --device cuda
+python s01/code/train.py --manifest /path/to/private/split_manifest.csv --output-dir runs/s01 --stage final --device cuda
+```
 
 ## AUC and reports
 

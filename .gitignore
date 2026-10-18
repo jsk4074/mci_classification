@@ -38,6 +38,23 @@ gpu_*.json
 command.txt
 *_command.txt
 
+# s01 private fingerprints, memberships, selection, and generated figures
+manifest_fingerprint.json
+summary.json
+domain_audit.json
+folds.json
+cv_summary.json
+cv_progress.json
+selection.json
+encoder_metadata.json
+embedding_cache_stats*.json
+test_evaluation.json
+smoke_check.json
+s00_metrics.json
+**/embeddings/
+**/figures/
+*.bin
+
 # Local environments, caches, editor files, and credentials
 .venv*/
 .cache/
