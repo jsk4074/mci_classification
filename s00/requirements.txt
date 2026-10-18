@@ -1,0 +1,9 @@
+# Python 3.10+. Install a matching torch/torchvision pair for your CPU or CUDA.
+# CPU-only example:
+# python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+torchvision>=0.17
+numpy>=1.24
+librosa>=0.10.2
+soundfile>=0.12
+scikit-learn>=1.3

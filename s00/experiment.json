@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "entrypoint": "code/resnet18_baseline.py",
+  "parameters": {
+    "seed": 42,
+    "epochs": 50,
+    "patience": 10,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "clip_seconds": 5,
+    "eval_windows": 5,
+    "val_fraction": 0.15,
+    "test_fraction": 0.15,
+    "pretrained": false
+  }
+}

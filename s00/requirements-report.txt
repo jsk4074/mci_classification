@@ -1,0 +1,2 @@
+# Optional A4 PDF export; Pango must also be available on the host.
+weasyprint==70.0
