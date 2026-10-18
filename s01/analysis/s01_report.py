@@ -180,7 +180,7 @@ def _learning(rows, output, report, warnings):
     plotter = _plotter(output, warnings)
     figure_html = ""
     if plotter:
-        figure, axes = plotter.subplots(1, 2, figsize=(11, 4), constrained_layout=True)
+        figure, axes = plotter.subplots(2, 1, figsize=(7, 6.5), constrained_layout=True)
         for axis, series in zip(axes, (
             (("train_loss", "Training loss"), ("val_patient_loss", "Validation patient loss")),
             (("val_patient_macro_f1", "Validation patient macro F1"), ("val_patient_balanced_accuracy", "Validation patient balanced accuracy")),
@@ -192,7 +192,7 @@ def _learning(rows, output, report, warnings):
             axis.set_xlabel("Epoch")
             axis.grid(alpha=0.2)
             if axis.lines:
-                axis.legend(fontsize=8)
+                axis.legend(fontsize=9)
         axes[0].set_ylabel("Cross-entropy loss")
         axes[1].set_ylabel("Patient score")
         axes[1].set_ylim(0, 1.03)
