@@ -10,7 +10,6 @@ from __future__ import annotations
 
 from collections import defaultdict
 import csv
-from datetime import datetime
 import html
 import json
 import math
@@ -19,7 +18,6 @@ from pathlib import Path
 import re
 import tempfile
 from urllib.parse import quote
-from zoneinfo import ZoneInfo
 
 
 LABELS = ("NM", "AD", "MCI")
@@ -409,10 +407,11 @@ def write_report(output_dir: Path, report_path: Path | None = None, *, status=No
     links = "".join(f'<li><a href="{_relative(output / name, report)}">{name}</a></li>' for name in known_artifacts if (output / name).is_file())
     warning_html = '<section><h2>Artifact reading notes</h2><ul>' + "".join(f'<li>{_escape(warning)}</li>' for warning in warnings) + '</ul></section>' if warnings else ""
     refreshed = '<meta http-equiv="refresh" content="20">' if current in ("cv", "training") else ""
-    timestamp = datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y-%m-%d %H:%M:%S KST")
-    progress_text = " · ".join(f'{key.capitalize()}: {_escape(state[key])}' for key in ("variant", "fold", "epoch") if key in state)
+    progress_items = [f'Selected epoch: {_fmt(selected_epoch, "count")}']
+    progress_items.extend(f'{key.capitalize()}: {_escape(state[key])}' for key in ("variant", "fold", "epoch") if key in state)
+    progress_text = " · ".join(progress_items)
     document = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{refreshed}<title>s01 · XLS-R patient-bag MIL</title><style>{CSS}</style></head><body><main>
-<header><p>s01 · NM / AD / MCI</p><h1>XLS-R patient-bag multiple-instance learning</h1><span class="badge {'failed' if current == 'failed' else ''}">{STATUSES[current]}</span><p>{notes[current]}</p><p class="small">Generated {timestamp} · Selected epoch: {_fmt(selected_epoch, "count")} · {progress_text}</p><nav><a href="#method">Method</a><a href="#domain">Domain audit</a><a href="#cv">CV comparison</a><a href="#learning">Learning curves</a><a href="#limitations">Interpretation</a></nav></header>
+<header><p>s01 · NM / AD / MCI</p><h1>XLS-R patient-bag multiple-instance learning</h1><span class="badge {'failed' if current == 'failed' else ''}">{STATUSES[current]}</span><p>{notes[current]}</p><p class="small">{progress_text}</p><nav><a href="#method">Method</a><a href="#domain">Domain audit</a><a href="#cv">CV comparison</a><a href="#learning">Learning curves</a><a href="#limitations">Interpretation</a></nav></header>
 <section id="method"><h2>Method and evaluation protocol</h2><div class="methods"><article><h3>Frozen encoder, patient bags</h3><p>Audio is converted to mono at 16 kHz. Each recording supplies up to {windows} deterministic {_fmt(window)}-second waveform windows. Valid encoder frames are mean-pooled within each window, then window embeddings are averaged equally into one recording representation. Padding masks exclude padded waveform samples and encoder frames; the window cap can leave gaps in very long recordings.</p><p>A frozen multilingual XLS-R speech encoder provides recording representations. A trainable LayerNorm → Linear({projection}) → GELU → Dropout({dropout:g}) projection precedes patient-bag aggregation and a three-class linear diagnosis head. All available recording representations belong to that patient's bag.</p><p>Variant A uses mean MIL. Variant B uses learned attention MIL. Variant C uses the same attention MIL with train-only precomputed channel variants: each training recording can use its unaugmented base representation or an augmented representation. Validation and test use base representations.</p></article><article><h3>Patient-primary selection</h3><p>Five-fold CV combines original training and validation patients as the development pool. All recordings from one person stay together; A/B/C share identical folds and original test patients remain excluded. Mean CV patient macro F1 selects A/B/C; ties use lower mean patient loss, then A → B → C. The selected final model is fitted on original training patients; original validation patients select its checkpoint, followed by one original-test evaluation.</p><p>Training uses ordinary shuffled patient batches and inverse training-patient class-frequency weights in cross-entropy. Validation loss is unweighted patient cross-entropy. Single-instance recording results are supplemental and do not tune the bag model, select variants, or select checkpoints.</p><ul>{settings}</ul></article></div></section>
 {_summary_section(summary)}{_domain_section(audit)}{cross_validation}{learning}{latest_html}{validation_html}{test_html}{_comparison(baseline, final)}
 <section id="limitations"><h2>Interpretation and source confounding</h2><p>Test class supports can be very small; inspect the per-class patient counts. Recording observations within a patient are correlated. A high class AUC on this holdout does not establish clinical generalization.</p><p>s00 test results were already known before s01 design. Comparisons on this reused holdout are exploratory and are not a fresh blinded confirmatory test. Validation and CV results used for model selection are not independent test estimates.</p><p>Channel transforms do not establish domain invariance. Cross-device or cross-site generalization requires independent devices or sites with diagnosis overlap. Sample rate, duration and encoding are available technical metadata; diagnosis must never be treated as a measured device identity.</p></section>

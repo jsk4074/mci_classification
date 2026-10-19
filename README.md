@@ -97,6 +97,8 @@ python s01/code/train.py --manifest /path/to/private/split_manifest.csv --output
 ## AUC and reports
 
 Training generates a method/results HTML report in its output directory.
+Reports omit generation and update timestamps. Use this convention for future
+numbered experiments.
 Postprocessing uses saved prediction probabilities and does not rerun the model.
 
 ```bash
