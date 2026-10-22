@@ -14,8 +14,9 @@ HTML/PDF reports in local ignored directories.
 | --- | --- | --- |
 | [s00](s00/README.md) | Single-channel ResNet18 on log-mel speech features | Frozen patient-disjoint train/validation/test splits |
 | [s01](s01/README.md) | Frozen pinned XLS-R embeddings with mean/attention patient-bag MIL; A/B/C channel-augmentation comparison | Shared five-fold CV on original train + validation patients, then frozen selection and one original-test evaluation |
+| [s02](s02/README.md) | Matched s00 ResNet18 and s01 XLS-R comparison with the enlarged MCI cohort | Shared frozen patient splits and five development folds; each final model tested once |
 
-`s02` and subsequent experiments will be added when their implementations exist.
+Subsequent experiments will be added as their implementations become available.
 
 ```text
 run_experiment.py          # Common launcher for numbered experiments
