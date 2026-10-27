@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "entrypoint": "code/train.py",
+  "parameters": {
+    "stage": "cv",
+    "variants": "A,B,C",
+    "encoder_name": "facebook/wav2vec2-xls-r-300m",
+    "encoder_revision": "1a640f32ac3e39899438a2931f9924c02f080a54",
+    "encoder_batch_size": 4,
+    "seed": 42,
+    "epochs": 100,
+    "patience": 12,
+    "batch_size": 8,
+    "learning_rate": 0.001,
+    "weight_decay": 0.001,
+    "folds": 5,
+    "projection_size": 256,
+    "attention_size": 128,
+    "dropout": 0.3,
+    "clip_seconds": 5,
+    "eval_windows": 5,
+    "augmentation_variants": 1,
+    "augmentation_version": "channel-v1",
+    "cutoff_min": 4000,
+    "cutoff_max": 7500,
+    "snr_min": 20,
+    "snr_max": 35
+  }
+}

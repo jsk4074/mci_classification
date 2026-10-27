@@ -4,17 +4,22 @@ Code for three-class speech classification, organized by numbered experiments.
 Each experiment owns its model implementation and settings. `s00` is the first
 ResNet18 baseline; subsequent systems use `s01`, `s02`, and so on.
 
-This repository contains source, configuration, tests, and documentation.
-Keep audio, patient manifests, predictions, checkpoints, caches, and generated
-HTML/PDF reports in local ignored directories.
+This repository contains source, configuration, tests, documentation, and
+reviewed aggregate report snapshots in [`reports/`](reports/README.md). Keep audio,
+patient manifests, predictions, checkpoints, caches, and complete run directories
+in local ignored directories.
 
 ## Experiments
 
 | ID | Implementation | Evaluation |
 | --- | --- | --- |
 | [s00](s00/README.md) | Single-channel ResNet18 on log-mel speech features | Frozen patient-disjoint train/validation/test splits |
+| [s01](s01/README.md) | Frozen pinned XLS-R embeddings with mean/attention patient-bag MIL; A/B/C channel-augmentation comparison | Shared five-fold CV on original train + validation patients, then frozen selection and one original-test evaluation |
+| [s02](s02/README.md) | Matched s00 ResNet18 and s01 XLS-R comparison with the enlarged MCI cohort | Shared frozen patient splits and five development folds; each final model tested once |
 
-`s01` and `s02` will be added when their implementations exist.
+Completed results: [s01 PDF](reports/s01/report.pdf) · [s02 PDF](reports/s02/report.pdf). The [report index](reports/README.md) provides HTML copies, study sizes, and interpretation.
+
+Subsequent experiments will be added as their implementations become available.
 
 ```text
 run_experiment.py          # Common launcher for numbered experiments
@@ -82,9 +87,22 @@ The supplied frozen manifest determines membership. Source-data issues such as
 unresolved duplicate participant identities must be resolved or excluded in that
 private manifest before training. No participant review files are published.
 
+For s01's separate environment and complete protocol, see [s01/README.md](s01/README.md).
+Its common-launcher default performs development CV; final training uses the
+direct entrypoint with the saved selection in the same local study directory:
+
+```bash
+python -m pip install -r s01/requirements.txt
+python run_experiment.py s01 --manifest /path/to/private/split_manifest.csv --prepare-only
+python run_experiment.py s01 --manifest /path/to/private/split_manifest.csv --device cuda
+python s01/code/train.py --manifest /path/to/private/split_manifest.csv --output-dir runs/s01 --stage final --device cuda
+```
+
 ## AUC and reports
 
 Training generates a method/results HTML report in its output directory.
+Reports omit generation and update timestamps. Use this convention for future
+numbered experiments.
 Postprocessing uses saved prediction probabilities and does not rerun the model.
 
 ```bash
@@ -97,7 +115,9 @@ python s00/analysis/export_report_pdf.py --html runs/s00/report.html --output ru
 
 The analysis renderer includes the clipping/padding comparison with the original
 CNN pipeline and class-specific one-vs-rest ROC AUC. A4 styling applies only to
-the exported PDF. Training and analysis outputs remain local.
+the exported PDF. Training and analysis outputs remain local. Reviewed aggregate HTML/PDF snapshots and their figures
+may be published under `reports/`; this is a narrow exception to the ignored
+run directories, not permission to publish the underlying private artifacts.
 
 ## Tests
 

@@ -101,6 +101,11 @@ def test_empty_report_describes_method_without_inventing_training_results(tmp_pa
 def test_method_explains_patient_isolation_and_variable_length_audio(tmp_path):
     report = report_module().write_report(tmp_path, status="prepared")
     text = ReportHTML(report.read_text()).visible_text
+    assert "Splits prepared" in text
+    assert "Auto-refresh every 15 seconds while prepared or training" in text
+    assert "Generated " not in text
+    assert not re.search(r"\b\d{4}-\d{2}-\d{2}\b|\b\d{2}:\d{2}:\d{2}\b", text)
+    assert "· Auto-refresh" not in text
     for phrase in (
         "Patient-disjoint validation", "Short clips", "Long clips during training",
         "Validation and test", "Implementation updates",

@@ -1,0 +1,4 @@
+# The two preserved pipelines and timestamp-free HTML/A4 report rendering.
+-r ../s00/requirements.txt
+-r ../s01/requirements.txt
+-r ../s01/requirements-report.txt

@@ -1,0 +1,37 @@
+{
+  "experiment": "s02",
+  "code_snapshot_commit": "369cf8f118d46a7139386d264c179a5b799eab94",
+  "source_html_sha256": "613ce314b6fdfb39163560e32932dc90f8466bf20897279378b249fc3cc5d8e9",
+  "source_pdf_sha256": "6540d077c4e27164a0e37bd1903076cb1ef2377102603e32c19386b02692369f",
+  "pdf_pages": 18,
+  "published_file_sha256": {
+    "figures/cv_comparison.png": "d5988d59a3df105f427f82fcc82a7cc4c671f5fe1b9e5fd6e03553c46f36c35a",
+    "figures/cv_comparison.svg": "cf9bb7bb58e5009ebd251c84d6d2cbd8b822c0e9b9cf6303bd2ce97ce5d56590",
+    "figures/resnet18_learning.png": "36bf7506f38c0708720b335d97229f4eb8fda4e87af0cc731bb945780549fc6d",
+    "figures/resnet18_learning.svg": "e7768fb5fb35271f35c37c1006c591476fefff3abdb472e1494ec6b001a54fc0",
+    "figures/resnet18_test_patient_confusion.png": "bd61944751eb559069b388d9a4071bbd5f1b660ae0c40f7e589af1db2363c555",
+    "figures/resnet18_test_patient_confusion.svg": "56f2397f948ce3828f802f5fa3b74d0e8c635ba5dd6f95fdbcc554df7ee7fdc8",
+    "figures/resnet18_test_recording_confusion.png": "2e696b73cc32b8f65d95a0d6c7ba57d53b97330a8673ae356b8cb627c74522cb",
+    "figures/resnet18_test_recording_confusion.svg": "254686175d7ea656b78c9325546b74c48978b14cf39249cdbad774d70e2b3fc4",
+    "figures/resnet18_validation_patient_confusion.png": "74578c770e99eec3b2d5b1f31e45a81ce66c063e8bca8828f8a23966180bfce7",
+    "figures/resnet18_validation_patient_confusion.svg": "b0b083e440152b446902394384d484f88de7bd085a78f8bf9918602e5da45d5a",
+    "figures/resnet18_validation_recording_confusion.png": "af42f85f41dfcc5b7dec730424d073f55e53580269d8d0e9768ba03317633e22",
+    "figures/resnet18_validation_recording_confusion.svg": "0a839b94c1706af4ae5e82900449299b8058f8a5d07cd8fa719a366a2cbd5778",
+    "figures/xlsr_mil_learning.png": "48fa784859b183f34168f0930899a8898f097436f8a8d8cc904473bdbf0d996c",
+    "figures/xlsr_mil_learning.svg": "4ad85e602ec9b1847776938bfeafcbdddd60d442b5787e64a370f96c24932eff",
+    "figures/xlsr_mil_test_patient_confusion.png": "5be3d8b96ca45f94a3b9a7756dfa92503883c9280f5974cd5ea24f851d610306",
+    "figures/xlsr_mil_test_patient_confusion.svg": "18a21d2b49c3dcf5805dac51115c3b565264efba756b06bc4c63b02ec4ae2c70",
+    "figures/xlsr_mil_test_recording_confusion.png": "4167489841042159ac483681fc6d60a6abee6beab925a77e48428df48a218cd9",
+    "figures/xlsr_mil_test_recording_confusion.svg": "60b5b14d31f1bfe8a3cfcb6727ae804837d352c8aedbc7fd8322b69d9a4837e1",
+    "figures/xlsr_mil_validation_patient_confusion.png": "62465b9af2078061e5b46e97921cf6a4692fc69d28c5f103bcefce576e0f0b16",
+    "figures/xlsr_mil_validation_patient_confusion.svg": "a404d887130a0c7f0611269255837276b4caaf50b573b502d9f93d2a750fba13",
+    "figures/xlsr_mil_validation_recording_confusion.png": "1134470cf81246fefd523fd6025c520528dd6e450dda580269d64164d92853d6",
+    "figures/xlsr_mil_validation_recording_confusion.svg": "443e3a48ff36a30926f796b0929f440268464964fba289941b43b8cc92f253ce",
+    "report.html": "b388e2839e8ec5f05de37b8329e37cb39e74c99b6263a8f151b48227c94ee380",
+    "report.pdf": "583bf46594cc3eac52b02e4d146b9ecd6d63fd8912bd0b353aade284ef9d8566"
+  },
+  "presentation_adjustments": [
+    "Omitted the local run-artifact download section.",
+    "Replaced local PDF figure hyperlinks with public GitHub URLs."
+  ]
+}

@@ -1,0 +1,2 @@
+# Optional A4 PDF export; HTML and PNG/SVG reporting use requirements.txt.
+weasyprint==70.0

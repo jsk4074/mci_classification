@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import csv
-from datetime import datetime
 import html
 import json
 import math
@@ -12,7 +11,6 @@ from pathlib import Path
 import re
 import tempfile
 from urllib.parse import quote
-from zoneinfo import ZoneInfo
 
 
 LABELS = ("NM", "AD", "MCI")
@@ -578,7 +576,6 @@ def write_report(
     feature_values = _feature_values(feature_input)
     state["features"] = {key: feature_values[key] for key in DEFAULT_FEATURES}
     _atomic_write(output_dir / "report_state.json", json.dumps(state, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
-    timestamp = datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y-%m-%d %H:%M:%S KST")
     final_best = metrics.get("best_epoch")
     selected_best = final_best if final_best is not None else state.get("best_epoch")
     latest_epoch = history[-1].get("epoch") if history else None
@@ -609,11 +606,11 @@ def write_report(
         test_section = '<section><h2>Final held-out test</h2><p class="empty">No final test results yet. Test metrics appear only after final checkpoint selection and evaluation.</p></section>'
     warning_section = '<section><h2>Artifact reading notes</h2><ul class="warning-list">' + "".join(f'<li>{_escape(warning)}</li>' for warning in warnings) + '</ul></section>' if warnings else ""
     refresh = '<meta http-equiv="refresh" content="15">' if current_status in {"prepared", "training"} else ""
-    refresh_note = " · Auto-refresh every 15 seconds while prepared or training" if refresh else ""
+    refresh_note = '<span>Auto-refresh every 15 seconds while prepared or training</span>' if refresh else ""
     copy_navigation = '<a href="#model-dataset">Model dataset copy</a>' if copy_summary else ""
     document = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{refresh}<title>Speech classification · ResNet18 report</title><style>{CSS}</style></head>
-<body><main><header><span class="eyebrow">Research baseline · three-class classification</span><h1>Speech classification with ResNet18</h1><p class="subtitle">A reproducible NM / AD / MCI baseline with patient-disjoint evaluation and fixed-size inputs from variable-length speech.</p><div class="meta"><span class="badge {current_status}">{STATUS_LABELS[current_status]}</span><span>Generated {_escape(timestamp)}{refresh_note}</span></div>{notice}<nav aria-label="Report sections"><a href="#dataset">Dataset readiness</a>{copy_navigation}<a href="#method">Method</a><a href="#baseline-comparison">Original baseline comparison</a><a href="#splits">Patient splits</a><a href="#learning">Learning curves</a><a href="#artifacts">Artifacts</a></nav></header>
+<body><main><header><span class="eyebrow">Research baseline · three-class classification</span><h1>Speech classification with ResNet18</h1><p class="subtitle">A reproducible NM / AD / MCI baseline with patient-disjoint evaluation and fixed-size inputs from variable-length speech.</p><div class="meta"><span class="badge {current_status}">{STATUS_LABELS[current_status]}</span>{refresh_note}</div>{notice}<nav aria-label="Report sections"><a href="#dataset">Dataset readiness</a>{copy_navigation}<a href="#method">Method</a><a href="#baseline-comparison">Original baseline comparison</a><a href="#splits">Patient splits</a><a href="#learning">Learning curves</a><a href="#artifacts">Artifacts</a></nav></header>
 {overview}<section><h2>Implementation updates</h2><ul class="updates"><li><strong>Standalone three-class baseline.</strong> One ResNet18 predicts NM, AD, and MCI directly from speech log-mel inputs.</li><li><strong>Safe patient splits.</strong> Frozen manifests, duplicate checks, and patient-disjoint stratification prevent recordings from leaking between train, validation, and test.</li><li><strong>Variable-length handling.</strong> Short clips use floor padding; longer clips use random training crops and deterministic evaluation windows.</li><li><strong>Automatic reports.</strong> Preparation, epoch progress, final metrics, and failures update this offline HTML alongside machine-readable run artifacts.</li></ul></section>
 {_dataset_readiness(audit)}{_dataset_copy_section(copy_summary)}{_method_section(feature_values, config)}{_baseline_comparison(feature_values, output_dir, report_path, has_auc=bool(auc_metrics))}{_split_table(summary)}{_learning_curves(history)}{latest_section}{validation_section}{test_section}{warning_section}{_artifact_links(output_dir, report_path)}
 <footer>Report generated from local aggregate artifacts · no external assets or network requests · labels: NM / AD / MCI</footer></main></body></html>\n'''

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "entrypoint": "code/train.py",
+  "parameters": {
+    "stage": "all",
+    "system": "both",
+    "seed": 42,
+    "folds": 5,
+    "clip_seconds": 5.0,
+    "eval_windows": 5,
+    "resnet_epochs": 50,
+    "resnet_patience": 10,
+    "resnet_batch_size": 16,
+    "resnet_learning_rate": 0.001,
+    "resnet_weight_decay": 0.0001,
+    "xlsr_epochs": 100,
+    "xlsr_patience": 12,
+    "xlsr_batch_size": 8,
+    "xlsr_learning_rate": 0.001,
+    "xlsr_weight_decay": 0.001,
+    "encoder_batch_size": 4,
+    "export_pdf": true
+  }
+}

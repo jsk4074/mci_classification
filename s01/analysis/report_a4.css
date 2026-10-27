@@ -1,0 +1,120 @@
+@page {
+  size: A4 portrait;
+  margin: 15mm;
+  @bottom-left {
+    content: "s01 XLS-R MIL · NM / AD / MCI";
+    font: 8pt sans-serif;
+    color: #607282;
+  }
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font: 8pt sans-serif;
+    color: #607282;
+  }
+}
+
+@media print {
+  html, body { margin: 0; padding: 0; background: white; }
+  body { font: 9.5pt/1.4 sans-serif; color: #213341; }
+  main { width: auto; max-width: none; margin: 0; padding: 0; }
+  header { margin-bottom: 4mm; break-inside: avoid; }
+  nav { display: none; }
+  h1 { font-size: 21pt; line-height: 1.15; margin: 2mm 0 3mm; }
+  h2 { font-size: 14pt; line-height: 1.2; margin: 0 0 3mm; }
+  h3 { font-size: 11pt; margin: 3mm 0 2mm; }
+  h4 { font-size: 10pt; margin: 2mm 0; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  p { margin: 0 0 3mm; orphans: 3; widows: 3; }
+  section > p:first-of-type { break-after: avoid; }
+  .subtitle { font-size: 11pt; }
+  .small, .meta, figcaption { font-size: 8pt; }
+  .eyebrow, .badge { font-size: 8pt; }
+  .badge { padding: 1mm 2mm; }
+  .meta { gap: 3mm; }
+  section {
+    margin: 0 0 4mm;
+    padding: 3mm 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: white;
+    break-inside: auto;
+  }
+  .section-heading { display: block; break-after: avoid; }
+  .notice { margin: 3mm 0; padding: 2.5mm 3mm; }
+  .overview, .metric-grid {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 3mm 0;
+    border-collapse: separate;
+    border-spacing: 1mm;
+    break-inside: avoid;
+  }
+  .overview .metric, .metric-grid .metric {
+    display: table-cell;
+    vertical-align: top;
+    padding: 2mm;
+    border: 1px solid #dfe7ed;
+    border-radius: 0;
+    overflow-wrap: anywhere;
+  }
+  .overview .metric { width: 25%; }
+  .metric-grid .metric { width: 20%; }
+  .metric span { font-size: 7.5pt; }
+  .metric strong { font-size: 14pt; line-height: 1.3; }
+  .method-grid, .chart-grid, .evaluation-grid, .updates, .artifacts, .methods { display: block; }
+  .cards { display: table; table-layout: fixed; width: 100%; border-spacing: 1mm; }
+  .cards > div { display: table-cell; width: 20%; padding: 2mm; }
+  .cards strong { font-size: 13pt; }
+  .scroll { overflow: visible; }
+  figure { break-inside: avoid; }
+  figure img { width: auto; max-width: 100%; max-height: 180mm; }
+  .method-grid article { padding: 3mm; margin: 0 0 3mm; break-inside: avoid; }
+  .method-grid p, .updates li { font-size: 9pt; }
+  .updates { padding-left: 5mm; }
+  .updates li { margin-bottom: 1.5mm; }
+  .evaluation { padding-top: 3mm; margin-top: 3mm; break-inside: avoid; }
+  .evaluation > p { break-after: avoid; }
+  .evaluation-grid { display: table; table-layout: fixed; width: 100%; }
+  .evaluation-grid > div {
+    display: table-cell;
+    vertical-align: top;
+    width: 40%;
+    margin-bottom: 3mm;
+    break-inside: avoid;
+  }
+  .evaluation-grid > div:first-child { width: 60%; padding-right: 4mm; }
+  .table-scroll, .diagram { overflow: visible; }
+  table { width: 100%; table-layout: fixed; font-size: 8pt; break-inside: avoid; }
+  th, td { padding: 1.5mm 1mm; white-space: normal; overflow-wrap: anywhere; }
+  thead { display: table-header-group; }
+  thead th { font-size: 7.5pt; }
+  tr { break-inside: avoid; }
+  table[aria-label="Dataset source availability"] { font-size: 7pt; }
+  table[aria-label="Dataset source availability"] thead th { font-size: 7pt; }
+  table[aria-label="Dataset source availability"] th:first-child { width: 6%; }
+  table[aria-label="Dataset source availability"] th:nth-child(7) { width: 24%; }
+  .comparison th, .comparison td { min-width: 0; }
+  .comparison th:first-child { width: 20%; }
+  .comparison td { width: 40%; }
+  .matrix { width: 100%; max-width: 100%; font-size: 9pt; }
+  .diagram, .chart { margin: 3mm 0; padding: 3mm; break-inside: avoid; }
+  .diagram svg, .chart svg { width: 100%; max-width: 100%; min-width: 0; height: auto; }
+  .legend { margin: 2mm 0; font-size: 7.5pt; }
+  figcaption { margin: 2mm 0 0; }
+  .dataset-tree {
+    padding: 3mm;
+    font-size: 7.5pt;
+    white-space: pre-wrap;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    break-inside: avoid;
+  }
+  .artifacts li { margin: 0; padding: 1.5mm 0; break-inside: avoid; }
+  .artifacts { column-count: 2; column-gap: 6mm; }
+  #artifacts { break-before: page; }
+  .artifacts a, .artifacts span, code { overflow-wrap: anywhere; }
+  code { font-size: 8pt; }
+  footer { font-size: 7.5pt; margin-top: 4mm; }
+}
