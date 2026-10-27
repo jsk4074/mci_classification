@@ -72,3 +72,11 @@ htmlcov/
 .aws/
 *.pem
 *.key
+
+# Reviewed aggregate report snapshots only
+!/reports/s01/report.html
+!/reports/s01/report.pdf
+!/reports/s01/figures/
+!/reports/s02/report.html
+!/reports/s02/report.pdf
+!/reports/s02/figures/

@@ -116,3 +116,7 @@ class balance. Validation/CV scores used for selection are not independent test
 estimates, and five-fold comparisons are not nested-CV estimates of the entire
 selection procedure. Inspect class supports and NM/AD recalls alongside macro
 scores; strong MCI discrimination can reflect source/task differences.
+
+## Saved aggregate report
+
+The completed s02 evaluation is available as [PDF](../reports/s02/report.pdf) and [HTML](../reports/s02/report.html). See the [report index](../reports/README.md) for study sizes, result summaries, provenance, and instructions for opening the HTML with its figures.

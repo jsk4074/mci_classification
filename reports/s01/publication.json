@@ -1,0 +1,28 @@
+{
+  "experiment": "s01",
+  "code_snapshot_commit": "369cf8f118d46a7139386d264c179a5b799eab94",
+  "source_html_sha256": "d0d0a10b48cd62e1f7b263367f075c644beae843a8667f0ca7bf98e6af74bd11",
+  "source_pdf_sha256": "499c0db5e920db0586f7da1249939c58afee35296aadf71ef67ce91d30c5e68e",
+  "pdf_pages": 12,
+  "published_file_sha256": {
+    "figures/cv_variants.png": "ab75d07173bf80d5ef78db1cc8d85851d678f86a9740b1069320517d2d226945",
+    "figures/cv_variants.svg": "52dc454bb2ce75b4ba02d0a858b608cb8d25281ff0ee30930148f119851e1ac6",
+    "figures/learning_curves.png": "8b0cd8ecd0118dec1284db1aeddc4444bf99f3627feefcfbae8c3d57c8c7b18a",
+    "figures/learning_curves.svg": "d1341f4346a2d4f9c89e448229c47526b46c677b13e51b7b04d17e115059f551",
+    "figures/test_patient_confusion.png": "04bbd8eae27175c56596c2b2f29f1dc9cdf54d5d32e494a5613986ae190ec30b",
+    "figures/test_patient_confusion.svg": "52b4a93965759247ee60b85be418f9850a54d623a2f375a6b404153345904805",
+    "figures/test_recording_confusion.png": "dec275d5219c1a31e8a1ef17e0cc6d8d2a7a39e9450ba2d86f61bcc56f22cedd",
+    "figures/test_recording_confusion.svg": "17fbd1fee55c39ed23e9d3cb1c658832e36994998b6ecf47a9e5f5a2877d01a6",
+    "figures/validation_patient_confusion.png": "29c0607063092a247adc67243d37d908479a4c91d2b698e82a989ced01bc33c2",
+    "figures/validation_patient_confusion.svg": "be88c2efffae42982db2ec536b0016667e026f6d7f9f6b4313cf707287c0c210",
+    "figures/validation_recording_confusion.png": "11933b6d298bb1c231bec8a7a0312e042ee8debc331426d31580793dee7bb35e",
+    "figures/validation_recording_confusion.svg": "14b17fe535592ab2c10c233a2589e071b7c471e002068bcc55d0d6f21fceb271",
+    "report.html": "9506fed02d51e8b84dcee880cf0499e096d49737299edeaddcbc68ac4baa2586",
+    "report.pdf": "3ae72bcc1f6e437ec4b55650d9434a9edd65251590adc65f0a0d0e92d0e91815"
+  },
+  "presentation_adjustments": [
+    "Omitted the local run-artifact download section.",
+    "Replaced local PDF figure hyperlinks with public GitHub URLs.",
+    "Shortened the validation recording confusion-chart title."
+  ]
+}

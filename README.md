@@ -4,9 +4,10 @@ Code for three-class speech classification, organized by numbered experiments.
 Each experiment owns its model implementation and settings. `s00` is the first
 ResNet18 baseline; subsequent systems use `s01`, `s02`, and so on.
 
-This repository contains source, configuration, tests, and documentation.
-Keep audio, patient manifests, predictions, checkpoints, caches, and generated
-HTML/PDF reports in local ignored directories.
+This repository contains source, configuration, tests, documentation, and
+reviewed aggregate report snapshots in [`reports/`](reports/README.md). Keep audio,
+patient manifests, predictions, checkpoints, caches, and complete run directories
+in local ignored directories.
 
 ## Experiments
 
@@ -15,6 +16,8 @@ HTML/PDF reports in local ignored directories.
 | [s00](s00/README.md) | Single-channel ResNet18 on log-mel speech features | Frozen patient-disjoint train/validation/test splits |
 | [s01](s01/README.md) | Frozen pinned XLS-R embeddings with mean/attention patient-bag MIL; A/B/C channel-augmentation comparison | Shared five-fold CV on original train + validation patients, then frozen selection and one original-test evaluation |
 | [s02](s02/README.md) | Matched s00 ResNet18 and s01 XLS-R comparison with the enlarged MCI cohort | Shared frozen patient splits and five development folds; each final model tested once |
+
+Completed results: [s01 PDF](reports/s01/report.pdf) · [s02 PDF](reports/s02/report.pdf). The [report index](reports/README.md) provides HTML copies, study sizes, and interpretation.
 
 Subsequent experiments will be added as their implementations become available.
 
@@ -112,7 +115,9 @@ python s00/analysis/export_report_pdf.py --html runs/s00/report.html --output ru
 
 The analysis renderer includes the clipping/padding comparison with the original
 CNN pipeline and class-specific one-vs-rest ROC AUC. A4 styling applies only to
-the exported PDF. Training and analysis outputs remain local.
+the exported PDF. Training and analysis outputs remain local. Reviewed aggregate HTML/PDF snapshots and their figures
+may be published under `reports/`; this is a narrow exception to the ignored
+run directories, not permission to publish the underlying private artifacts.
 
 ## Tests
 

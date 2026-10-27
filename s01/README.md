@@ -2,8 +2,7 @@
 
 `s01` uses a frozen multilingual speech encoder and a trainable patient-bag
 multiple-instance learning (MIL) head. Its implementation is independent of
-`s00`; the completed ResNet18 source remains unchanged. This code update
-publishes no s01 training results.
+`s00`; the completed ResNet18 source remains unchanged. The completed run is documented in the saved aggregate report below.
 
 ## Model and audio handling
 
@@ -185,3 +184,7 @@ the comparison is exploratory rather than a fresh blinded confirmation. The
 acquisition differences, and limited patient counts constrain interpretation.
 Channel augmentation does not establish cross-device/site robustness; that
 requires appropriate independent cohorts with diagnosis overlap.
+
+## Saved aggregate report
+
+The completed s01 evaluation is available as [PDF](../reports/s01/report.pdf) and [HTML](../reports/s01/report.html). See the [report index](../reports/README.md) for study sizes, result summaries, provenance, and instructions for opening the HTML with its figures.

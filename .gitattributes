@@ -1,0 +1,2 @@
+reports/**/*.svg linguist-generated=true -whitespace
+reports/**/*.html linguist-generated=true
